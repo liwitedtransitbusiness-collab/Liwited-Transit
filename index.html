@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Liwited Transit Regional Timetable</title>
+
+<style>
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f4f7fa;
+    margin:0;
+}
+
+header{
+    background:#0055A5;
+    color:white;
+    padding:20px;
+}
+
+header h1{
+    margin:0;
+}
+
+.notice{
+    background:white;
+    margin:15px;
+    padding:15px;
+    border-radius:8px;
+}
+
+.route-stats{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin:15px;
+}
+
+.stat-card{
+    background:#0055A5;
+    color:white;
+    padding:15px;
+    border-radius:8px;
+    flex:1;
+    min-width:150px;
+    text-align:center;
+}
+
+.stat-number{
+    font-size:24px;
+    font-weight:bold;
+}
+
+.route-buttons{
+    margin:15px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.route-buttons button{
+    border:none;
+    background:#0055A5;
+    color:white;
+    padding:10px 16px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.route-buttons button:hover{
+    background:#003d78;
+}
+
+.no-results{
+    display:none;
+    margin:15px;
+    padding:15px;
+    background:#fff4d6;
+    border:2px solid orange;
+    border-radius:8px;
+}
+
+.schedule-wrapper{
+    overflow-x:auto;
+    margin:15px;
+}
+
+table{
+    border-collapse:collapse;
+    width:100%;
+    min-width:900px;
+    background:white;
+}
+
+th{
+    background:#0055A5;
+    color:white;
+    padding:8px;
+}
+
+td{
+    border:1px solid #ddd;
+    padding:8px;
+    text-align:center;
+}
+
+footer{
+    background:white;
+    margin:15px;
+    padding:15px;
+    border-radius:8px;
+}
+
+@media(max-width:768px){
+
+    header h1{
+        font-size:1.4rem;
+    }
+
+    .route-buttons button{
+        width:100%;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>Route FCV / FCS / FCX</h1>
+
+<p>Pine Junction • Conifer • Federal Center • Denver</p>
+
+</header>
+
+<div class="notice">
+
+<h2>Schedule Effective November 13, 2028</h2>
+
+<p>
+
+<b>
+ALL TIMES ARE REAL-TIME INFORMATION (RTI)
+ARRIVAL (AR) TIMES.
+</b>
+
+</p>
+
+<p>
+
+All times shown are actual arrival times.
+
+No times are estimates.
+
+No times are approximations.
+
+No times are guesses.
+
+</p>
+
+<p>
+
+Vehicles remain at each stop for approximately
+three (3) minutes before departing.
+
+</p>
+
+<p>
+
+After departure, vehicles continue toward whatever
+confusion currently exists on I‑25, I‑70, US‑285,
+I‑270, C‑470, or E‑470.
+
+</p>
+
+<p>
+
+The bus arrives when the timetable says it arrives.
+
+The bus waits three minutes.
+
+Anything after that becomes a highway issue.
+
+</p>
+
+</div>
+
+<div class="route-stats">
+
+<div class="stat-card">
+<div class="stat-number" id="tripCount">9</div>
+<div>Visible Trips</div>
+</div>
+
+<div class="stat-card">
+<div class="stat-number" id="routeCount">3</div>
+<div>Visible Branches</div>
+</div>
+
+<div class="stat-card">
+<div class="stat-number" id="chaosLevel">I‑25</div>
+<div>Highway Confusion Level</div>
+</div>
+
+</div>
+
+<div class="route-buttons">
+
+<button onclick="showRoute('all')">
+Expand All
+</button>
+
+<button onclick="showRoute('fcs')">
+FCS
+</button>
+
+<button onclick="showRoute('fcv')">
+FCV
+</button>
+
+<button onclick="showRoute('fcx')">
+FCX
+</button>
+
+</div>
+
+<div id="noResults" class="no-results">
+
+<h3>No Service Found</h3>
+
+<p>
+
+Possible causes include:
+
+</p>
+
+<ul>
+
+<li>I‑25 became emotionally overwhelmed.</li>
+
+<li>US‑285 entered a state of confusion.</li>
+
+<li>I‑270 forgot where it goes.</li>
+
+<li>E‑470 began charging emotional tolls.</li>
+
+<li>Liwited Transit dispatch is investigating.</li>
+
+</ul>
+
+</div>
+
+<div class="schedule-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Stop</th>
+
+<th>FCS</th>
+
+<th>FCX</th>
+
+<th>FCV</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr class="fcs-route">
+<td>Pine Junction</td>
+<td>5:12A</td>
+<td>--</td>
+<td>--</td>
+</tr>
+
+<tr class="fcx-route">
+<td>Pine Junction</td>
+<td>--</td>
+<td>5:29A</td>
+<td>--</td>
+</tr>
+
+<tr class="fcv-route">
+<td>Pine Junction</td>
+<td>--</td>
+<td>--</td>
+<td>5:43A</td>
+</tr>
+
+<tr class="fcs-route">
+<td>Aspen Park</td>
+<td>5:27A</td>
+<td>--</td>
+<td>--</td>
+</tr>
+
+<tr class="fcx-route">
+<td>Aspen Park</td>
+<td>--</td>
+<td>5:45A</td>
+<td>--</td>
+</tr>
+
+<tr class="fcv-route">
+<td>Aspen Park</td>
+<td>--</td>
+<td>--</td>
+<td>6:00A</td>
+</tr>
+
+<tr class="fcs-route">
+<td>Federal Center Station</td>
+<td>6:00A</td>
+<td>--</td>
+<td>--</td>
+</tr>
+
+<tr class="fcx-route">
+<td>Civic Center Station</td>
+<td>--</td>
+<td>6:27A</td>
+<td>--</td>
+</tr>
+
+<tr class="fcv-route">
+<td>Civic Center Station</td>
+<td>--</td>
+<td>--</td>
+<td>6:47A</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<footer>
+
+<p><b>(FCS)</b> Via Federal Center Station</p>
+
+<p><b>(FCV)</b> Semi‑Express</p>
+
+<p><b>(FCX)</b> Express</p>
+
+<p><b>(RTI)</b> Real‑Time Information</p>
+
+<p><b>(AR)</b> Arrival Time</p>
+
+<p>
+
+"Precision Scheduling. Questionable Highways."
+
+</p>
+
+</footer>
+
+<script>
+
+function updateStats(){
+
+    const visibleRows =
+        Array.from(document.querySelectorAll("tbody tr"))
+        .filter(row => row.style.display !== "none");
+
+    document.getElementById("tripCount").textContent =
+        visibleRows.length;
+
+    let branches = new Set();
+
+    visibleRows.forEach(row=>{
+
+        if(row.classList.contains("fcs-route"))
+            branches.add("FCS");
+
+        if(row.classList.contains("fcv-route"))
+            branches.add("FCV");
+
+        if(row.classList.contains("fcx-route"))
+            branches.add("FCX");
+
+    });
+
+    document.getElementById("routeCount").textContent =
+        branches.size;
+
+}
+
+function showRoute(route){
+
+    const rows =
+        document.querySelectorAll(
+            ".fcs-route,.fcv-route,.fcx-route"
+        );
+
+    const noResults =
+        document.getElementById("noResults");
+
+    rows.forEach(row=>{
+        row.style.display="none";
+    });
+
+    if(route==="all"){
+
+        rows.forEach(row=>{
+            row.style.display="";
+        });
+
+        noResults.style.display="none";
+
+        updateStats();
+
+        return;
+    }
+
+    const selected =
+        document.querySelectorAll("." + route + "-route");
+
+    selected.forEach(row=>{
+        row.style.display="";
+    });
+
+    if(selected.length===0){
+
+        noResults.style.display="block";
+
+    }else{
+
+        noResults.style.display="none";
+
+    }
+
+    updateStats();
+
+}
+
+const chaosLevels = [
+"I‑25",
+"US‑285",
+"I‑70",
+"I‑270",
+"E‑470",
+"MODERATE",
+"SEVERE",
+"ABSOLUTE CHAOS"
+];
+
+document.getElementById("chaosLevel").textContent =
+chaosLevels[Math.floor(Math.random()*chaosLevels.length)];
+
+updateStats();
+
+</script>
+
+</body>
+
+</html>
